@@ -22,9 +22,7 @@ let graphValues = [];
 
 //GET DATA
 //From File
-fileUploadEl.addEventListener("change", fileDataHandler);
-
-function fileDataHandler() {
+fileUploadEl.addEventListener("change", () => {
   //Initialize File Variable
   let file = fileUploadEl.files[0];
 
@@ -49,20 +47,26 @@ function fileDataHandler() {
       splitPairs = allPairs[i].split(",").map(Number);
       graphValues.push(new DataPoint(splitPairs[0], splitPairs[1]));
     }
-    //Sort Array from lowest to highest x Values
-    graphValues.sort((a, b) => a.x - b.x);
-    createTable(graphValues);
+
+    createTable(graphValues)
   };
-}
+});
 
 //From Input
 const xInputEl = document.getElementById("x-input");
 const yInputEl = document.getElementById("y-input");
 const addBtnEl = document.getElementById("add-value");
-const removeBtnEl = document.getElementById("add-value")
+const removeBtnEl = document.getElementById("remove-value");
 
-// addBtn.addEventListener("click", addValues);
+addBtnEl.addEventListener("click", () => {
+  graphValues.push(new DataPoint(xInputEl.value, yInputEl.value));
+  console.log(graphValues);
+  createTable(graphValues);
+});
 
+removeBtnEl.addEventListener("click", () => {
+  alert("remove");
+});
 
 //CREATE TABLE OF VALUES
 //Row Nodes
@@ -73,10 +77,17 @@ const yTableEl = document.getElementById("output-y-table");
 const placeholders = document.querySelectorAll(".placeholder");
 
 function createTable(anArray) {
+  //Sort Array from lowest to highest x Values
+  graphValues.sort((a, b) => a.x - b.x);
+
   //Remove Empty Initial Values for x and y
   placeholders.forEach((placeholder) => {
     placeholder.remove();
   });
+
+  //Remove Previous Filled Table
+  removeAllChildNodes(xTableEl);
+  removeAllChildNodes(yTableEl);
 
   //Call Functions to Fill Table
   domManipulation(anArray, xTableEl);
@@ -104,3 +115,8 @@ function domManipulation(anArray, row) {
   }
 }
 
+function removeAllChildNodes(parent) {
+  while (parent.childNodes.length > 0) {
+      parent.removeChild(parent.firstChild);
+  }
+}
