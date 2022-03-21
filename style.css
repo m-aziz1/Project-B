@@ -40,10 +40,10 @@ table {
   margin-right: auto;
   width: 20px;
   border: 1px solid gray;
-  background-color: rgb(225, 245, 255);
+  background-color: rgb(129, 211, 252);
 }
 
 td {
-    background-color: aliceblue;
+    background-color: rgb(184, 217, 247);
   border: 1px solid gray;
 }
