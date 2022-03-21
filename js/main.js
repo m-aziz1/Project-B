@@ -23,6 +23,9 @@ let graphValues = [];
 //GET DATA
 //From File
 fileUploadEl.addEventListener("change", () => {
+  //Clear Existing Data
+  graphValues = [];
+  
   //Initialize File Variable
   let file = fileUploadEl.files[0];
 
@@ -48,6 +51,7 @@ fileUploadEl.addEventListener("change", () => {
       graphValues.push(new DataPoint(splitPairs[0], splitPairs[1]));
     }
 
+    //Build Table
     createTable(graphValues)
   };
 });
