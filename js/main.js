@@ -1,7 +1,7 @@
 //GRAPHING PROGRAM
 
 //DOCUMENT ELEMENTS
-const fileUpload = document.getElementById("uploadData");
+const fileUploadEl = document.getElementById("uploadData");
 
 //CANVAS SETUP
 const cnv = document.getElementById("graph-canvas");
@@ -22,11 +22,11 @@ let graphValues = [];
 
 //GET DATA
 //From File
-fileUpload.addEventListener("change", fileDataHandler);
+fileUploadEl.addEventListener("change", fileDataHandler);
 
 function fileDataHandler() {
   //Initialize File Variable
-  let file = fileUpload.files[0];
+  let file = fileUploadEl.files[0];
 
   //Create File Reader Object
   let reader = new FileReader();
@@ -55,10 +55,19 @@ function fileDataHandler() {
   };
 }
 
+//From Input
+const xInputEl = document.getElementById("x-input");
+const yInputEl = document.getElementById("y-input");
+const addBtnEl = document.getElementById("add-value");
+const removeBtnEl = document.getElementById("add-value")
+
+// addBtn.addEventListener("click", addValues);
+
+
 //CREATE TABLE OF VALUES
 //Row Nodes
-const xTable = document.getElementById("output-x-table");
-const yTable = document.getElementById("output-y-table");
+const xTableEl = document.getElementById("output-x-table");
+const yTableEl = document.getElementById("output-y-table");
 
 //Returns NodeList of Elements with Selected Class
 const placeholders = document.querySelectorAll(".placeholder");
@@ -70,8 +79,8 @@ function createTable(anArray) {
   });
 
   //Call Functions to Fill Table
-  domManipulation(anArray, xTable);
-  domManipulation(anArray, yTable);
+  domManipulation(anArray, xTableEl);
+  domManipulation(anArray, yTableEl);
 }
 
 //(dom = Document Object Model)
@@ -81,9 +90,9 @@ function domManipulation(anArray, row) {
     let cellNode = document.createElement("td");
 
     //Write as Strings to fill Data Cells
-    if (row === xTable) {
+    if (row === xTableEl) {
       textNode = document.createTextNode(`${anArray[i].x}`);
-    } else if (row === yTable) {
+    } else if (row === yTableEl) {
       textNode = document.createTextNode(`${anArray[i].y}`);
     }
 
