@@ -94,3 +94,4 @@ function domManipulation(anArray, row) {
     row.appendChild(cellNode);
   }
 }
+
