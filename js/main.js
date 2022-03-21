@@ -115,6 +115,7 @@ function domManipulation(anArray, row) {
   }
 }
 
+//Remove Curent Table Data Loop
 function removeAllChildNodes(parent) {
   while (parent.childNodes.length > 0) {
       parent.removeChild(parent.firstChild);
