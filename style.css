@@ -1,0 +1,49 @@
+html {
+  background-color: midnightblue;
+}
+
+body {
+  background-color: white;
+  margin: 0;
+  width: 800px;
+  margin: auto;
+  min-height: 90vh;
+  max-height: 10vh;
+  padding: 1vh 100px 9vh;
+  text-align: center;
+}
+
+h1 {
+  color: darkred;
+}
+
+#graph-canvas {
+  border: 1px solid grey;
+}
+
+#x-input,
+#y-input {
+  width: 85px;
+}
+
+button {
+  display: inline;
+  background-color: burlywood;
+  color: black;
+  padding: 3px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 20px;
+  border: 1px solid gray;
+  background-color: rgb(225, 245, 255);
+}
+
+td {
+    background-color: aliceblue;
+  border: 1px solid gray;
+}
