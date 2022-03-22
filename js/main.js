@@ -21,11 +21,11 @@ class DataPoint {
 let graphValues = [];
 
 //GET DATA
-//From File
+//FROM FILE
 fileUploadEl.addEventListener("change", () => {
   //Clear Existing Data
   graphValues = [];
-  
+
   //Initialize File Variable
   let file = fileUploadEl.files[0];
 
@@ -52,24 +52,27 @@ fileUploadEl.addEventListener("change", () => {
     }
 
     //Build Table
-    createTable(graphValues)
+    createTable(graphValues);
   };
 });
 
-//From Input
+//FROM INPUT
 const xInputEl = document.getElementById("x-input");
 const yInputEl = document.getElementById("y-input");
 const addBtnEl = document.getElementById("add-value");
 const removeBtnEl = document.getElementById("remove-value");
+let indexSameY, indexSameX;
 
+//Add Values
 addBtnEl.addEventListener("click", () => {
   graphValues.push(new DataPoint(xInputEl.value, yInputEl.value));
-  console.log(graphValues);
   createTable(graphValues);
 });
 
+//Delete Values
 removeBtnEl.addEventListener("click", () => {
-  alert("remove");
+  // indexSameX = graphValues.map(e => )
+  // console.log(indexSameX);
 });
 
 //CREATE TABLE OF VALUES
@@ -122,6 +125,6 @@ function domManipulation(anArray, row) {
 //Remove Curent Table Data Loop
 function removeAllChildNodes(parent) {
   while (parent.childNodes.length > 0) {
-      parent.removeChild(parent.firstChild);
+    parent.removeChild(parent.firstChild);
   }
 }
