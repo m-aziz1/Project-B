@@ -61,29 +61,43 @@ let xInputEl = document.getElementById("x-input");
 let yInputEl = document.getElementById("y-input");
 const addBtnEl = document.getElementById("add-value");
 const removeBtnEl = document.getElementById("remove-value");
-let indexSameY, indexSameX;
 
 //Add Values
-addBtnEl.addEventListener("click", () => { //CHANGE SO ONLY ALLOWED IF NOT AN ALREADY EXISTING VALUE
-  if (+xInputEl.value !== 0 || +yInputEl.value !== 0) {
+addBtnEl.addEventListener("click", () => {
+  //CHANGE SO ONLY ALLOWED IF NOT AN ALREADY EXISTING VALUE
+  //If input.value.length = 0, field is empty
+  if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
     graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
     createTable(graphValues);
   } else {
-    alert("invalid");
+    alert("Please enter both x and y values");
   }
 });
 
 //Delete Values
 removeBtnEl.addEventListener("click", () => {
-  indexSameX = graphValues.findIndex((data) => data.x === +xInputEl.value);
-  indexSameY = graphValues.findIndex((graph) => graph.y === +yInputEl.value);
+  if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
+    let foundInd = searchDatapoint();
 
-  //Remove the DataPoint if its x and y values are requested to be removed
-  if (indexSameX === indexSameY && indexSameX !== -1 && indexSameY !== -1) {
-    graphValues.splice(indexSameX, 1);
-    createTable(graphValues);
+    //Remove the DataPoint if its x and y Values are in Stored Values
+    if (foundInd[0] === foundInd[1] && foundInd.every((index) => index > -1)) {
+      graphValues.splice(foundInd[0], 1);
+      createTable(graphValues);
+    } else {
+      alert("Datapoint not found");
+    }
+  } else {
+    alert("Please enter both x and y values");
   }
 });
+
+//Search for Existing DatapPoint
+function searchDatapoint() {
+  let xInd = graphValues.findIndex((data) => data.x === +xInputEl.value);
+  let yInd = graphValues.findIndex((graph) => graph.y === +yInputEl.value);
+
+  return [xInd, yInd];
+}
 
 //CREATE TABLE OF VALUES
 //Row Nodes
