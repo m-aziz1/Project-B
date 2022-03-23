@@ -57,22 +57,27 @@ fileUploadEl.addEventListener("change", () => {
 });
 
 //FROM INPUT
-const xInputEl = document.getElementById("x-input");
-const yInputEl = document.getElementById("y-input");
+let xInputEl = document.getElementById("x-input");
+let yInputEl = document.getElementById("y-input");
 const addBtnEl = document.getElementById("add-value");
 const removeBtnEl = document.getElementById("remove-value");
 let indexSameY, indexSameX;
 
 //Add Values
 addBtnEl.addEventListener("click", () => {
-  graphValues.push(new DataPoint(xInputEl.value, yInputEl.value));
+  graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
   createTable(graphValues);
 });
 
 //Delete Values
 removeBtnEl.addEventListener("click", () => {
-  // indexSameX = graphValues.map(e => )
-  // console.log(indexSameX);
+  indexSameX = graphValues.findIndex(data => data.x === +xInputEl.value);
+  indexSameY = graphValues.findIndex(data => data.y === +yInputEl.value);
+  //Ask what's wrong here --- make it so that you can only add/remove when oth x and y filled
+  if (indexSameX === indexSameY) {
+    console.log(indexSameX, indexSameY);
+    graphValues.splice(indexSameX, 1);
+  }
 });
 
 //CREATE TABLE OF VALUES
@@ -122,7 +127,7 @@ function domManipulation(anArray, row) {
   }
 }
 
-//Remove Curent Table Data Loop
+//Remove Current Table Data Loop
 function removeAllChildNodes(parent) {
   while (parent.childNodes.length > 0) {
     parent.removeChild(parent.firstChild);
