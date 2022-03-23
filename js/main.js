@@ -67,8 +67,14 @@ addBtnEl.addEventListener("click", () => {
   //CHANGE SO ONLY ALLOWED IF NOT AN ALREADY EXISTING VALUE
   //If input.value.length = 0, field is empty
   if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
+    let foundInd = searchDatapoint();
+    if (foundInd.every((index) => index > -1)) {
+      console.log(foundInd);
+    alert("Datapoint already Exists");
+    } else {
     graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
     createTable(graphValues);
+    }
   } else {
     alert("Please enter both x and y values");
   }
