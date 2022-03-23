@@ -64,19 +64,24 @@ const removeBtnEl = document.getElementById("remove-value");
 let indexSameY, indexSameX;
 
 //Add Values
-addBtnEl.addEventListener("click", () => {
-  graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
-  createTable(graphValues);
+addBtnEl.addEventListener("click", () => { //CHANGE SO ONLY ALLOWED IF NOT AN ALREADY EXISTING VALUE
+  if (+xInputEl.value !== 0 || +yInputEl.value !== 0) {
+    graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
+    createTable(graphValues);
+  } else {
+    alert("invalid");
+  }
 });
 
 //Delete Values
 removeBtnEl.addEventListener("click", () => {
-  indexSameX = graphValues.findIndex(data => data.x === +xInputEl.value);
-  indexSameY = graphValues.findIndex(data => data.y === +yInputEl.value);
-  //Ask what's wrong here --- make it so that you can only add/remove when oth x and y filled
-  if (indexSameX === indexSameY) {
-    console.log(indexSameX, indexSameY);
+  indexSameX = graphValues.findIndex((data) => data.x === +xInputEl.value);
+  indexSameY = graphValues.findIndex((graph) => graph.y === +yInputEl.value);
+
+  //Remove the DataPoint if its x and y values are requested to be removed
+  if (indexSameX === indexSameY && indexSameX !== -1 && indexSameY !== -1) {
     graphValues.splice(indexSameX, 1);
+    createTable(graphValues);
   }
 });
 
