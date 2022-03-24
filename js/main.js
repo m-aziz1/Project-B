@@ -70,10 +70,10 @@ addBtnEl.addEventListener("click", () => {
     let foundInd = searchDatapoint();
     if (foundInd.every((index) => index > -1)) {
       console.log(foundInd);
-    alert("Datapoint already Exists");
+      alert("Datapoint already Exists");
     } else {
-    graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
-    createTable(graphValues);
+      graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
+      createTable(graphValues);
     }
   } else {
     alert("Please enter both x and y values");
@@ -158,3 +158,4 @@ function removeAllChildNodes(parent) {
     parent.removeChild(parent.firstChild);
   }
 }
+

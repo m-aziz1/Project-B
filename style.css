@@ -4,11 +4,8 @@ html {
 
 body {
   background-color: white;
-  margin: 0;
   width: 800px;
   margin: auto;
-  min-height: 90vh;
-  max-height: 10vh;
   padding: 1vh 100px 9vh;
   text-align: center;
 }
