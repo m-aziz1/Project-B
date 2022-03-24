@@ -159,3 +159,40 @@ function removeAllChildNodes(parent) {
   }
 }
 
+function coordinateGrid(xIntervals, yIntervals, xColor, yColor) {
+  let xScale = cnv.width / xIntervals;
+  let xCoord = 0;
+  for (let i = 0; i < xIntervals - 1; i++) {
+    xCoord += xScale;
+    line(xCoord, 0, xCoord, cnv.height, xColor);
+  }
+
+  let yScale = cnv.height / yIntervals;
+  let yCoord = 0;
+  for (let i = 0; i < yIntervals - 1; i++) {
+    yCoord += yScale;
+    line(0, yCoord, cnv.width, yCoord, yColor);
+  }
+}
+
+function line(x1, y1, x2, y2, color) {
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+}
+
+line(50, 50, 50, 500, "black");
+line(50, 500, 650, 500, "black");
+let xLine = 0;
+for (let i = 0; i < 10; i++) {
+  xLine  += 65;
+  line(xLine, 50, xLine, 500, "grey");
+}
+
+let yLine = 0;
+for (let i = 0; i < 10; i++) {
+  yLine  += 50;
+  line(50, yLine, 650, yLine, "grey");
+}
