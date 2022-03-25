@@ -137,7 +137,7 @@ function domManipulation(anArray, row) {
     let textNode;
     let cellNode = document.createElement("td");
 
-    //Write as Strings to fill Data Cells
+    //Write as Strmings to fill Data Cells
     if (row === xTableEl) {
       textNode = document.createTextNode(`${anArray[i].x}`);
     } else if (row === yTableEl) {
@@ -159,21 +159,23 @@ function removeAllChildNodes(parent) {
   }
 }
 
-function coordinateGrid(xIntervals, yIntervals, xColor, yColor) {
-  let xScale = cnv.width / xIntervals;
-  let xCoord = 0;
-  for (let i = 0; i < xIntervals - 1; i++) {
-    xCoord += xScale;
-    line(xCoord, 0, xCoord, cnv.height, xColor);
-  }
+// function coordinateGrid(xIntervals, yIntervals, xColor, yColor) {
+//   let newWidth = cnv.width - 50;
+//   let newHeight = cnv.height - 50;
+//   let xScale = newWidth / xIntervals;
+//   let xCoord = 0;
+//   let yScale = newHeight / yIntervals;
+//   let yCoord = 0;
 
-  let yScale = cnv.height / yIntervals;
-  let yCoord = 0;
-  for (let i = 0; i < yIntervals - 1; i++) {
-    yCoord += yScale;
-    line(0, yCoord, cnv.width, yCoord, yColor);
-  }
-}
+//   line(50, 50, 50, newHeight, xColor);
+//   for (let i = 0; i < xIntervals; i++) {
+//     xCoord += xScale;
+//     line(xCoord, 50, xCoord, newHeight, xColor);
+
+//     yCoord += yScale;
+//     line(50, yCoord, newWidth, yCoord, yColor);
+//   }
+// }
 
 function line(x1, y1, x2, y2, color) {
   ctx.strokeStyle = color;
@@ -183,16 +185,16 @@ function line(x1, y1, x2, y2, color) {
   ctx.stroke();
 }
 
-line(50, 50, 50, 500, "black");
-line(50, 500, 650, 500, "black");
-let xLine = 0;
-for (let i = 0; i < 10; i++) {
-  xLine  += 65;
-  line(xLine, 50, xLine, 500, "grey");
-}
+// coordinateGrid(10, 10, "grey", "grey");
+let scaleX = 10;
+let margin = 50;
+let nHeight = cnv.height - margin;
+let nWidth = cnv.width - margin;
+let color =  "grey";
+let newX = 0;
 
-let yLine = 0;
-for (let i = 0; i < 10; i++) {
-  yLine  += 50;
-  line(50, yLine, 650, yLine, "grey");
+let newSpace = nWidth / scaleX;
+for (let i = 0; i < scaleX; i++) {
+  newX += newSpace;
+  line(newX, margin, newX, nHeight, color);
 }
