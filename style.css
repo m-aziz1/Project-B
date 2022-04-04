@@ -1,21 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  background-color: midnightblue;
+  background-color: rgb(46, 46, 46);
 }
 
 body {
-  background-color: white;
-  width: 800px;
-  margin: auto;
-  padding: 1vh 100px 9vh;
+  background-color: rgb(255, 255, 255);
+  margin: 25px auto;
+  width: 60%;
+  padding: 25px;
+  border-radius: 25px;
   text-align: center;
+}
+
+body p {
+  margin: 10px;
 }
 
 h1 {
   color: darkred;
+  margin-bottom: 10px;
 }
 
 #graph-canvas {
   border: 1px solid grey;
+  width: 72%;
 }
 
 #x-input,
@@ -41,6 +53,6 @@ table {
 }
 
 td {
-    background-color: rgb(194, 220, 243);
+  background-color: rgb(194, 220, 243);
   border: 1px solid gray;
 }
