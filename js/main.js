@@ -6,7 +6,7 @@ const fileUploadEl = document.getElementById("uploadData");
 //CANVAS SETUP
 const cnv = document.getElementById("graph-canvas");
 const ctx = cnv.getContext("2d");
-cnv.width = 700;
+cnv.width = 550;
 cnv.height = 550;
 
 //CLASSES
@@ -97,7 +97,7 @@ removeBtnEl.addEventListener("click", () => {
   }
 });
 
-//Search for Existing DatapPoint
+//Search for Existing DataPoint
 function searchDatapoint() {
   let xInd = graphValues.findIndex((data) => data.x === +xInputEl.value);
   let yInd = graphValues.findIndex((graph) => graph.y === +yInputEl.value);
@@ -159,22 +159,6 @@ function removeAllChildNodes(parent) {
   }
 }
 
-function coordinateGrid(xIntervals, yIntervals, xColor, yColor) {
-  let xScale = cnv.width / xIntervals;
-  let xCoord = 0;
-  for (let i = 0; i < xIntervals - 1; i++) {
-    xCoord += xScale;
-    line(xCoord, 0, xCoord, cnv.height, xColor);
-  }
-
-  let yScale = cnv.height / yIntervals;
-  let yCoord = 0;
-  for (let i = 0; i < yIntervals - 1; i++) {
-    yCoord += yScale;
-    line(0, yCoord, cnv.width, yCoord, yColor);
-  }
-}
-
 function line(x1, y1, x2, y2, color) {
   ctx.strokeStyle = color;
   ctx.beginPath();
@@ -183,16 +167,35 @@ function line(x1, y1, x2, y2, color) {
   ctx.stroke();
 }
 
-line(50, 50, 50, 500, "black");
-line(50, 500, 650, 500, "black");
-let xLine = 0;
-for (let i = 0; i < 10; i++) {
-  xLine  += 65;
-  line(xLine, 50, xLine, 500, "grey");
+function drawGraph(
+  wMargin,
+  hMargin,
+  xIntervals,
+  yIntervals,
+  axisColor,
+  intervalColor
+) {
+  //Set New Dimensions with Margins
+  nHeight = cnv.height - hMargin;
+  nWidth = cnv.width - wMargin;
+
+  //Create Vertical and Horizontal Axis
+  line(wMargin, hMargin, wMargin, nHeight, axisColor);
+  line(wMargin, nHeight, nWidth, nHeight, axisColor);
+
+  let xSpacer = (nWidth - wMargin) / xIntervals;
+  let xCoord = 0;
+  for (let i = 0; i < xIntervals; i++) {
+    xCoord += xSpacer;
+    line(wMargin + xCoord, hMargin, wMargin + xCoord, nHeight, intervalColor);
+  }
+
+  let ySpacer = (nHeight - hMargin) / yIntervals;
+  let yCoord = 0;
+  for (let i = 0; i < yIntervals; i++) {
+    yCoord += ySpacer;
+    line(wMargin, yCoord + hMargin, nWidth, yCoord + hMargin, intervalColor);
+  }
 }
 
-let yLine = 0;
-for (let i = 0; i < 10; i++) {
-  yLine  += 50;
-  line(50, yLine, 650, yLine, "grey");
-}
+drawGraph(150, 150, 10, 10, "blue", "lightgrey");
