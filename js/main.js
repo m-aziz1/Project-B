@@ -175,6 +175,11 @@ function drawGraph(
   axisColor,
   intervalColor
 ) {
+  //Draw Background
+  ctx.fillStyle = "black";
+  ctx.beginPath();
+  ctx.rect(0, 0, cnv.width, cnv.height);
+
   //Set New Dimensions with Margins
   nHeight = cnv.height - hMargin;
   nWidth = cnv.width - wMargin;
@@ -199,3 +204,7 @@ function drawGraph(
 }
 
 drawGraph(150, 150, 10, 10, "blue", "lightgrey");
+
+function drawData() {
+
+}
