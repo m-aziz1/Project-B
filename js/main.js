@@ -118,9 +118,9 @@ function createTable(anArray) {
   graphValues.sort((a, b) => a.x - b.x);
 
   //Remove Empty Initial Values for x and y
-  placeholders.forEach((placeholder) => {
-    placeholder.remove();
-  });
+  // placeholders.forEach((placeholder) => {
+  //   placeholder.remove();
+  // });
 
   //Remove Previous Filled Table
   removeAllChildNodes(xTableEl);
@@ -159,14 +159,6 @@ function removeAllChildNodes(parent) {
   }
 }
 
-function line(x1, y1, x2, y2, color) {
-  ctx.strokeStyle = color;
-  ctx.beginPath();
-  ctx.moveTo(x1, y1);
-  ctx.lineTo(x2, y2);
-  ctx.stroke();
-}
-
 function drawGraph(
   wMargin,
   hMargin,
@@ -176,9 +168,7 @@ function drawGraph(
   intervalColor
 ) {
   //Draw Background
-  ctx.fillStyle = "black";
-  ctx.beginPath();
-  ctx.rect(0, 0, cnv.width, cnv.height);
+  background("white");
 
   //Set New Dimensions with Margins
   nHeight = cnv.height - hMargin;
@@ -203,8 +193,6 @@ function drawGraph(
   }
 }
 
-drawGraph(150, 150, 10, 10, "blue", "lightgrey");
+drawGraph(75, 75, 10, 10, "blue", "lightgrey");
 
-function drawData() {
-
-}
+function drawData() {}
