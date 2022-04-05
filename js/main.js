@@ -154,8 +154,8 @@ function domManipulation(anArray, row) {
 
 //Remove Current Table Data Loop
 function removeAllChildNodes(parent) {
-  while (parent.childNodes.length > 0) {
-    parent.removeChild(parent.firstChild);
+  while (parent.childNodes.length > 2) {
+    parent.removeChild(parent.lastChild);
   }
 }
 
