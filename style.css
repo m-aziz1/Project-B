@@ -48,13 +48,16 @@ button {
 table {
   margin-left: auto;
   margin-right: auto;
-  width: 20px;
   border: 1px solid gray;
   background-color: rgb(140, 210, 245);
+}
+
+#graph-table {
+  overflow-x: auto;
 }
 
 td {
   background-color: rgb(194, 220, 243);
   border: 1px solid gray;
-  padding: 2px;
+  padding: 1.5px;
 }

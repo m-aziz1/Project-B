@@ -68,7 +68,7 @@ addBtnEl.addEventListener("click", () => {
   //If input.value.length = 0, field is empty
   if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
     let foundInd = searchDatapoint();
-    if (foundInd.every((index) => index > -1)) {
+    if (foundInd[0] === foundInd[1] && foundInd.every((index) => index > -1)) {
       console.log(foundInd);
       alert("Datapoint already Exists");
     } else {
@@ -137,7 +137,7 @@ function domManipulation(anArray, row) {
     let textNode;
     let cellNode = document.createElement("td");
 
-    //Write as Strmings to fill Data Cells
+    //Write as Strings to fill Data Cells
     if (row === xTableEl) {
       textNode = document.createTextNode(`${anArray[i].x}`);
     } else if (row === yTableEl) {
