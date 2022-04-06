@@ -62,19 +62,26 @@ let yInputEl = document.getElementById("y-input");
 const addBtnEl = document.getElementById("add-value");
 const removeBtnEl = document.getElementById("remove-value");
 
+//Search For Matching Values
+
 //Add Values
 addBtnEl.addEventListener("click", () => {
-  //CHANGE SO ONLY ALLOWED IF NOT AN ALREADY EXISTING VALUE
   //If input.value.length = 0, field is empty
   if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
-    let foundInd = searchDatapoint();
-    if (foundInd[0] === foundInd[1] && foundInd.every((index) => index > -1)) {
-      console.log(foundInd);
+    //Check if Value Does Not Already Exist
+    const exists = graphValues.some(
+      (point) => point.x === +xInputEl.value && point.y === +yInputEl.value
+    );
+
+    //Output
+    if (exists) {
       alert("Datapoint already Exists");
     } else {
       graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
       createTable(graphValues);
     }
+
+    //If Field is Empty
   } else {
     alert("Please enter both x and y values");
   }
@@ -83,27 +90,21 @@ addBtnEl.addEventListener("click", () => {
 //Delete Values
 removeBtnEl.addEventListener("click", () => {
   if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
-    let foundInd = searchDatapoint();
+    //Get Index of Existing Value
+    const found = graphValues.findIndex(
+      (point) => point.x === +xInputEl.value && point.y === +yInputEl.value
+    );
 
+    console.log(found);
     //Remove the DataPoint if its x and y Values are in Stored Values
-    if (foundInd[0] === foundInd[1] && foundInd.every((index) => index > -1)) {
-      graphValues.splice(foundInd[0], 1);
+    if (found > -1) {
+      graphValues.splice(found, 1);
       createTable(graphValues);
     } else {
       alert("Datapoint not found");
     }
-  } else {
-    alert("Please enter both x and y values");
   }
 });
-
-//Search for Existing DataPoint
-function searchDatapoint() {
-  let xInd = graphValues.findIndex((data) => data.x === +xInputEl.value);
-  let yInd = graphValues.findIndex((graph) => graph.y === +yInputEl.value);
-
-  return [xInd, yInd];
-}
 
 //CREATE TABLE OF VALUES
 //Row Nodes
