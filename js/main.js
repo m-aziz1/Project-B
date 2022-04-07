@@ -100,6 +100,13 @@ removeBtnEl.addEventListener("click", () => {
     if (found > -1) {
       graphValues.splice(found, 1);
       createTable(graphValues);
+
+      //If last DataPoint is deleted, Add Placeholder
+      if (xTableEl.childNodes.length < 3) {
+        let placeholder = [new DataPoint(0, 0)];
+        domManipulation(placeholder, xTableEl);
+        domManipulation(placeholder, yTableEl);
+      }
     } else {
       alert("Datapoint not found");
     }
@@ -111,17 +118,9 @@ removeBtnEl.addEventListener("click", () => {
 const xTableEl = document.getElementById("output-x-table");
 const yTableEl = document.getElementById("output-y-table");
 
-//Returns NodeList of Elements with Selected Class
-const placeholders = document.querySelectorAll(".placeholder");
-
 function createTable(anArray) {
   //Sort Array from lowest to highest x Values
   graphValues.sort((a, b) => a.x - b.x);
-
-  //Remove Empty Initial Values for x and y
-  // placeholders.forEach((placeholder) => {
-  //   placeholder.remove();
-  // });
 
   //Remove Previous Filled Table
   removeAllChildNodes(xTableEl);

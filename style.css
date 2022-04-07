@@ -4,11 +4,11 @@
 }
 
 html {
-  background-color: rgb(46, 46, 46);
+  background-color: #2e2e2e;
 }
 
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff;
   margin: 25px auto;
   width: 50%;
   padding: 25px;
@@ -21,13 +21,13 @@ body p {
 }
 
 h1 {
-  color: darkred;
+  color: #8b0000;
   margin-bottom: 10px;
 }
 
 #graph-canvas {
-  border: 1px solid grey;
-  width: 72%;
+  border: 1px solid #808080;
+  width: 70%;
 }
 
 #x-input,
@@ -37,10 +37,10 @@ h1 {
 
 button {
   display: inline;
-  background-color: burlywood;
-  color: black;
+  background-color: #deb887;
+  color: #000000;
   padding: 3px;
-  border: 1px solid black;
+  border: 1px solid #000000;
   cursor: pointer;
   margin-bottom: 10px;
 }
@@ -48,8 +48,8 @@ button {
 table {
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid gray;
-  background-color: rgb(140, 210, 245);
+  border: 1px solid #808080;
+  background-color: #8cd2f5;
 }
 
 #graph-table {
@@ -57,7 +57,7 @@ table {
 }
 
 td {
-  background-color: rgb(194, 220, 243);
-  border: 1px solid gray;
+  background-color: #c2dcf3;
+  border: 1px solid #808080;
   padding: 1.5px;
 }
