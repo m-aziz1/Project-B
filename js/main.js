@@ -95,7 +95,6 @@ removeBtnEl.addEventListener("click", () => {
       (point) => point.x === +xInputEl.value && point.y === +yInputEl.value
     );
 
-    console.log(found);
     //Remove the DataPoint if its x and y Values are in Stored Values
     if (found > -1) {
       graphValues.splice(found, 1);
@@ -110,21 +109,26 @@ removeBtnEl.addEventListener("click", () => {
     } else {
       alert("Datapoint not found");
     }
+  } else {
+    alert("Please enter both x and y values");
   }
 });
 
 //CREATE TABLE OF VALUES
 //Row Nodes
-const xTableEl = document.getElementById("output-x-table");
-const yTableEl = document.getElementById("output-y-table");
+let xTableEl, yTableEl;
+tableAxis = [];
+tableAxis.push(
+  (xTableEl = document.getElementById("output-x-table")),
+  (yTableEl = document.getElementById("output-y-table"))
+);
 
 function createTable(anArray) {
   //Sort Array from lowest to highest x Values
   graphValues.sort((a, b) => a.x - b.x);
 
   //Remove Previous Filled Table
-  removeAllChildNodes(xTableEl);
-  removeAllChildNodes(yTableEl);
+  removeAllChildNodes(tableAxis);
 
   //Call Functions to Fill Table
   domManipulation(anArray, xTableEl);
@@ -153,9 +157,15 @@ function domManipulation(anArray, row) {
 }
 
 //Remove Current Table Data Loop
-function removeAllChildNodes(parent) {
-  while (parent.childNodes.length > 2) {
-    parent.removeChild(parent.lastChild);
+function removeAllChildNodes(parentArray) {
+  //Remove Values for x and y Table Elements
+  parentArray.forEach((value) => nestedRemove(value));
+
+  //Remove Child Elements Loop
+  function nestedRemove(parent) {
+    while (parent.childNodes.length > 2) {
+      parent.removeChild(parent.lastChild);
+    }
   }
 }
 

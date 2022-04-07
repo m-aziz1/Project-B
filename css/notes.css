@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #2e2e2e;
+}
+
+body {
+  background-color: #ffffff;
+  margin: 25px auto;
+  width: 50%;
+  padding: 25px;
+  border-radius: 25px;
+  text-align: center;
+}
+
+body p {
+  margin: 10px;
+}
+
+h1 {
+  color: #8b0000;
+  margin-bottom: 10px;
+}
+
+.nav-bar {
+  padding: 10px;
+}
+
+.nav-bar a {
+  padding: 3px;
+  margin: 5px;
+  text-decoration: none;
+  background-color: #deb887;
+  border: 1px solid gray;
+}
+
+.nav-bar a:hover,
+button:hover {
+  background-color: #c2dcf3;
+}
